@@ -2,13 +2,13 @@
 		include 'carrito.php';
 		include 'transacciones.php';
 		include './inc/link.php';
-		include 'nomanches_funciones.php';
-		include 'nomanches_inicio_sesion.php';
+		include 'c_funciones.php';
+		include 'c_inicio_sesion.php';
 		$mysqli = conectar();
 		extract( $_REQUEST );
 
 		if ( !existe_sesion( $u, $s ) ) :
-		header( "location:nomanches_login.php?iderror=2" );
+		header( "location:c_login.php?iderror=2" );
 	else :
 ?>
 

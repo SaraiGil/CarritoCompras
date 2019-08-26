@@ -1,18 +1,11 @@
 <?php
-////////////////// CONEXION A LA BASE DE DATOS //////////////////
-$host = 'localhost';
-$basededatos = 'nomanches_bd';
-$usuario = 'root';
-$contraseña = '';
 
-$conexion = new mysqli($host, $usuario, $contraseña, $basededatos);
-if ($conexion -> connect_errno) {
-die( "Fallo la conexión : (" . $conexion -> mysqli_connect_errno() 
-. ") " . $conexion -> mysqli_connect_error());
-}
+include( "c_funciones.php" );
+$mysqli =  conectar();
+
  ///////////////////CONSULTA DE AMBAS TABLAS///////////////////////
-$queryCliente= $conexion->query("SELECT * FROM cliente order by Cve_clie");
-$queryUsuario=$conexion->query("SELECT * FROM usuario order by Nom_usu");
+$queryCliente= $mysqli->query("SELECT * FROM cliente order by Cve_clie");
+$queryUsuario=$mysqli->query("SELECT * FROM usuario order by Nom_usu");
 
 /////////// INSERTAR REGISTRO A AMBAS TABLAS ///////////////////////
 if(isset($_POST['insertar']))// SI SE PRESIONA EL BOTÓN INSERTAR OCURRE LO SIGUIENTE:
@@ -38,10 +31,10 @@ $Pass_usu=$_POST['Pass_usu'];
 
 
 // SE EJECUTA LA PRIMER INSERCIÓN A LA TABLA NO. 1
-$insertarClie=$conexion->query("INSERT INTO cliente VALUES ('$Cve_clie', '$Nom_clie', '$App_clie', '$Apm_clie', '$Rfc_clie', '$Email_clie', '$Tel_clie', '$Calle_clie', '$Col_clie', '$Cp_clie', '$Noc_clie', '$qr_clie', '$cve_ciu', '$bon_clie', '$Nom_usu')");
+$insertarClie=$mysqli->query("INSERT INTO cliente VALUES ('$Cve_clie', '$Nom_clie', '$App_clie', '$Apm_clie', '$Rfc_clie', '$Email_clie', '$Tel_clie', '$Calle_clie', '$Col_clie', '$Cp_clie', '$Noc_clie', '$qr_clie', '$cve_ciu', '$bon_clie', '$Nom_usu')");
 if ($insertarClie==true)// SI LA QUERY ANTERIOR SE EJECUTA CON EXITO, SE EJECUTA LA INSERCIÓN A LA TABLA 2
 {
-	$insertarUsu=$conexion->query("INSERT INTO usuario VALUES ('Nom_usu', '$Tipo_usu', '$Pass_usu')");
+	$insertarUsu=$mysqli->query("INSERT INTO usuario VALUES ('Nom_usu', '$Tipo_usu', '$Pass_usu')");
 }
 
 

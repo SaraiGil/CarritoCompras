@@ -1,7 +1,7 @@
 
 <?php include_once './inc/link.php'; 
       include_once 'carrito.php'; 
-      include_once( "nomanches_funciones.php" );
+      include_once( "c_funciones.php" );
 
       $mysqli = conectar();
       //session_start();
@@ -18,7 +18,7 @@
 	<link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" />
 	<script src="../js/jquery-3.4.1.min.js"></script>
 	<script src="../bootstrap/js/bootstrap.min.js"></script>
-	<script src="js/nomanches_login.js"></script>
+	<script src="js/c_login.js"></script>
 	<style>
 	body{
 		background-image: url("img/login.jpg");
@@ -28,7 +28,7 @@
 
 <body>
 
-<form action="nomanches_inicio_sesion.php"
+<form action="c_inicio_sesion.php"
 	method="post" id="form-login">
 
 <br />

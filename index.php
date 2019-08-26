@@ -1,6 +1,6 @@
     <?php include_once './inc/link.php'; 
           include_once 'carrito.php'; 
-          include_once( "nomanches_funciones.php" );
+          include_once( "c_funciones.php" );
           $mysqli = conectar();
     extract( $_REQUEST );
     ?>

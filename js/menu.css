@@ -1,0 +1,44 @@
+body { 
+	font-family: Arial, Helvetica, Swiss; 
+}
+
+table {
+	border-collapse: collapse;
+}
+
+.tablaMenu td {
+	vertical-align: top;
+	width: 200px;
+}
+
+p {
+	width: 680px;
+	text-align: justify;
+}
+
+.menu, .submenu {
+	background-color: lightyellow;
+	padding: 10px;
+	text-align: center;
+	border: solid 1px orange;
+	color: orange;
+	width: 200px;
+}
+
+.submenu {
+	position: absolute;
+}
+
+.tablaMenu td ul {
+	margin: 0 0 0 -25px;
+}
+
+.submenu a, .submenu a:visited {
+	color: orange;
+	text-decoration: none;
+}
+
+.submenu a:hover {
+	color: orange;
+	text-decoration: underline;
+}	

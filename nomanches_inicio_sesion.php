@@ -1,5 +1,5 @@
 <?php
-include_once( "nomanches_funciones.php" );
+include_once( "c_funciones.php" );
 include_once( "carrito.php");
 extract( $_REQUEST );
 // Recibimos $u y $p del formulario
@@ -11,7 +11,7 @@ echo $tipo;
 
 
 if ( $tipo == "0" ) {
-	header( "location:nomanches_login.php?iderror=1" );
+	header( "location:c_login.php?iderror=1" );
 
 } else {
 

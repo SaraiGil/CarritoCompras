@@ -1,5 +1,5 @@
 <?php
-include( "nomanches_funciones.php" );
+include( "c_funciones.php" );
 extract( $_REQUEST );
 
 $mysqli =  conectar();

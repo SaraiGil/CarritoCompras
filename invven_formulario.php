@@ -1,11 +1,11 @@
 <?php
-include( "nomanches_funciones.php" );
+include( "c_funciones.php" );
 $mysqli = conectar();
 
 extract( $_REQUEST );
 
 if ( !existe_sesion( $u, $s ) ) :
-	header( "location:nomanches_login.php?iderror=2" );
+	header( "location:c_login.php?iderror=2" );
 else :
 ?>
 
@@ -41,7 +41,7 @@ else :
 <DIV class="row">
 	<DIV class="col col-md-12 text-right">
 		<A class="btn btn-secondary"
-			href="nomanches_cerrar.php?u=<?= $u ?>&s=<?= $s ?>">
+			href="c_cerrar.php?u=<?= $u ?>&s=<?= $s ?>">
 			<I id="icono" class="fa fa-sign-out"></I>
 			Cerrar sesión (<?= $u ?>)
 		</A>

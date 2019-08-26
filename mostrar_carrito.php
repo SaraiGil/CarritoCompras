@@ -1,7 +1,7 @@
 <?php
 include_once 'carrito.php';
 include_once './inc/link.php';
-include_once 'nomanches_funciones.php';
+include_once 'c_funciones.php';
 $mysqli = conectar();
 extract( $_REQUEST );
 ?>
@@ -180,7 +180,7 @@ extract( $_REQUEST );
 		<FONT FACE="Century Gothic" size="30" color="black">¡Para continuar con la compra inicia sesión o regístrate!</FONT>
 
 	<a type="button" href="registro.php" class="btn btn-success btn-block"><i class="fa fa-pencil"></i>&nbsp; Registrarse</a>
-		<a type="button" href="nomanches_login.php" class="btn btn-info btn-block"><i class="fa fa-pencil"></i>&nbsp; Iniciar sesión</a>
+		<a type="button" href="c_login.php" class="btn btn-info btn-block"><i class="fa fa-pencil"></i>&nbsp; Iniciar sesión</a>
 
 
 		<?php ?>

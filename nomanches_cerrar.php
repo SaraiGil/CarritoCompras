@@ -1,5 +1,5 @@
 <?php
-include( "nomanches_funciones.php" );
+include( "c_funciones.php" );
 $mysqli = conectar();
 
 extract( $_REQUEST );
@@ -14,7 +14,7 @@ extract( $_REQUEST );
 			unset($_SESSION['ses']);
 			session_unset();
 			echo "<script>alert('Sesión cerrada con éxito :)')</script>";
-			header( "location:nomanches_login.php" );
+			header( "location:c_login.php" );
 		}
 	}
 //echo "USER: ".$u;
