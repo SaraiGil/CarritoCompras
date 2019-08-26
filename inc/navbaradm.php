@@ -8,7 +8,7 @@
                 <div class="contenedor-tabla pull-right">
                     <div class="contenedor-tr">
                         <a href="menu_admin.php?u=<?= $u ?>&s=<?= $s ?>" class="table-cell-td">Inicio</a>
-                        <A class="table-cell-td" href="c_cerrar.php?u=<?= $u ?>&s=<?= $s ?>?&salir=1">
+                        <A class="table-cell-td" href="c_cerrar.php?u=<?= $u ?>&s=<?= $s ?>">
                             <I id="icono" class="fa fa-sign-out"></I>
                             Cerrar sesión (<?= $u ?>)
                         </A>        

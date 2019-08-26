@@ -6,6 +6,10 @@ $mysqli = conectar();
 extract( $_REQUEST );
 //if (isset($_SESSION['user'])) {
 
+if ( !existe_sesion( $u, $s ) ) :
+	header( "location:c_login.php?iderror=2" );
+else :
+
 ?>
 
 
@@ -69,4 +73,4 @@ extract( $_REQUEST );
 
 </HTML>
 
-<?php //} else { header( "location:menu_login.php" ); } ?>
+<?php endif; ?>

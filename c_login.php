@@ -47,8 +47,8 @@
 		<div class="panel panel-info">
 			<div class="panel-heading text-center">
 				<h3>Bienvenido a nuestra plataform exclusiva y con los mejores servicios de Limpieza.</h3>
-				<h4>USER: <?php echo $_SESSION['user'];?></h4>
-				<h4>SESSION: <?php echo $_SESSION['ses'];?></h4>
+				<!-- <h4>USER: <?php echo $_SESSION['user'];?></h4>
+				<h4>SESSION: <?php echo $_SESSION['ses'];?></h4> -->
 			</div>
 
 			<div class="panel-body">

@@ -42,5 +42,24 @@ function permiso( $usuario, $password ) {
 
 }
 
+function existe_sesion( $us, $ses ) {
+	global $mysqli;
+
+	$sql = "SELECT * FROM sesiones WHERE nickus = '$us' AND ses = '$ses';";
+	//echo $sql;
+	//print_r();
+	$rs = $mysqli->query( $sql );
+	//echo $rs;
+	$sihay=$rs->num_rows;
+	//echo "Cantidad: ".$sihay;
+	if ( $sihay == 0 ) {
+		return false;
+	} else {
+		//$row = $rs->fetch_assoc();
+		return true;
+	}
+	//return $rs->num_rows == 1;
+}
+
 
 ?>

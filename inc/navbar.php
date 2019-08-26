@@ -30,7 +30,7 @@
                                 <i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;&nbsp;&nbsp;( <?= (empty($_SESSION['CARRITO'])) ? 0 : count($_SESSION['CARRITO']); ?> ) </i></a>
                         <?php }?>
                         <?php if ( isset($u) and isset($s) ) { ?>
-                        <A class="table-cell-td" href="c_cerrar.php?u=<?= $u ?>&s=<?= $s ?>?&salir=1">
+                        <A class="table-cell-td" href="c_cerrar.php?u=<?= $u ?>&s=<?= $s ?>">
                           <I id="icono" class="fa fa-sign-out"></I>
                           Cerrar sesión (<?= $u ?>)
                         </A>
