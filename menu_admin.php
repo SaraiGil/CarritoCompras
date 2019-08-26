@@ -4,6 +4,7 @@ include './inc/link.php';
 $mysqli = conectar();
 
 extract( $_REQUEST );
+//if (isset($_SESSION['user'])) {
 
 ?>
 
@@ -23,24 +24,25 @@ extract( $_REQUEST );
 	 <?php include './inc/navbaradm.php'; 
 	 session_start(); 
 	 $us_ses=$_SESSION['user'];
-	 $ses=$_SESSION['ses'];?>
+	 $ses=$_SESSION['ses'];	 ?>
 	</DIV>
 	<DIV class="container centro">
 	
 	<BR />
 
 	<BR />
-		<H3> Menú del administrador </H3>
+		<!-- <H3> Menú del administrador <?php echo $us_ses.' - '.$ses;?></H3> -->
 	<BR />
 	<BR />
 	<BR />
 		<DIV class="row">
 		<a href="usuario.php ?>&u=<?= $us_ses ?>&s=<?= $ses ?>" class="boton">Usuarios</a>
-		<a href="cliente.php ?>&u=<?= $us_ses ?>&s=<?= $ses ?>" class="boton azul">Empleado</a>
-		<a href="proveedor.php ?>&u=<?= $us_ses ?>&s=<?= $ses ?>" class="boton naranja">Proveedores</a>
+		<a href="cliente.php ?>&u=<?= $us_ses ?>&s=<?= $ses ?>" class="boton azul">Clientes</a>
+		<a href="empleado.php ?>&u=<?= $u ?>&s=<?= $s ?>" class="boton morado">Empleados</a>
 		</DIV>
 
 		<DIV class="row">
+		<a href="proveedor.php ?>&u=<?= $us_ses ?>&s=<?= $ses ?>" class="boton naranja">Proveedores</a>
 		<a href="compra.php ?>&u=<?= $us_ses?>&s=<?= $ses ?>" class="boton rojo">Compra</a>
 		<a href="ciudad.php ?>&u=<?= $us_ses?>&s=<?= $ses ?>" class="boton cafe">Ciudad</a>
 		<!--<a href="com_inv.php ?>&u=<?= $us_ses?>&s=<?= $ses ?>" class="boton morado">Detalle Compra</a>-->
@@ -51,7 +53,7 @@ extract( $_REQUEST );
 		<a href="catalogo.php ?>&u=<?= $us_ses?>&s=<?= $ses ?>" class="boton azul_2">Producto</a>
 		<!--<a href="#" class="boton salmon">Detalle venta</a>-->
 		<a href="factura.php ?>&u=<?= $us_ses?>&s=<?= $ses ?> " class="boton amarillo">Factura</a>
-		<!-- <a href="inventario.php ?>&u=<?= $us_ses?>&s=<?= $ses ?>" class="boton jalapeno">Inventario</a>	 -->
+		<a href="inventario.php ?>&u=<?= $us_ses?>&s=<?= $ses ?>" class="boton jalapeno">Inventario</a>
 		<!-- <a href="envio.php ?>&u=<?= $us_ses?>&s=<?= $ses ?>" class="boton rojo">Envio</a> -->
 		</DIV>
 
@@ -66,3 +68,5 @@ extract( $_REQUEST );
 </BODY>
 
 </HTML>
+
+<?php //} else { header( "location:menu_login.php" ); } ?>

@@ -29,10 +29,10 @@ $passIns=password_hash($pass_us, PASSWORD_BCRYPT);
 //}
 
 
-//die( "<a href='nomanches_login.php'>nomanches_login.php</a>" );
+//die( "<a href='c_login.php'>c_login.php</a>" );
 
 $mysqli->close();
-header( "location:nomanches_login.php" );
+header( "location:c_login.php" );
 
 }else{
 

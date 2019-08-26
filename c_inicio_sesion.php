@@ -7,6 +7,8 @@ extract( $_REQUEST );
 $mysqli = conectar();
 $tipo = permiso( $u, $p );
 //echo "HOLA SI ENTRAMOS\n";
+# Habilitar variables de sesión
+session_start();
 echo $tipo;
 
 
@@ -26,8 +28,6 @@ if ( $tipo == "0" ) {
 			$_SESSION['sucursal'] = "s_03";
 		break;
 	}
-	# Habilitar variables de sesión
-	session_start();
 
 
 	srand( (double)microtime() * 1000000 );

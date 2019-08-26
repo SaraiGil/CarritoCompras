@@ -61,7 +61,7 @@ if(isset($_POST['btnAccion'])) {
 
 				if(in_array($ID, $cvePaquetes)){
 					echo "<script>alert('El paquete ya ha sido agregado al carrito');</script>";
-					$msj="";
+					//$msj="";
 				}else{
 
 					$numProductos=count($_SESSION['CARRITO']);

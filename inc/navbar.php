@@ -29,15 +29,14 @@
                           <a href="mostrar_carrito.php" class="table-cell-td" title="Ver carrito de compras">
                                 <i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;&nbsp;&nbsp;( <?= (empty($_SESSION['CARRITO'])) ? 0 : count($_SESSION['CARRITO']); ?> ) </i></a>
                         <?php }?>
-                        <?php if ( isset($u) and isset($s) ) { 
-                                //$u=$_SESSION['user'];?>
-                        <A class="table-cell-td" href="nomanches_cerrar.php?u=<?= $u ?>&s=<?= $s ?>&salir=1">
+                        <?php if ( isset($u) and isset($s) ) { ?>
+                        <A class="table-cell-td" href="c_cerrar.php?u=<?= $u ?>&s=<?= $s ?>?&salir=1">
                           <I id="icono" class="fa fa-sign-out"></I>
                           Cerrar sesión (<?= $u ?>)
                         </A>
  
                         <?php } else {?>
-                        <a href="nomanches_login.php" class="table-cell-td"><i class="fa fa-user"></i>&nbsp;&nbsp;Login </a>
+                        <a href="c_login.php" class="table-cell-td"><i class="fa fa-user"></i>&nbsp;&nbsp;Login </a>
                         <?php }?>
 
 

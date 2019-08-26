@@ -71,7 +71,7 @@ extract( $_REQUEST );
 			<TH class="col col-md-2">Cantidad</TH>
 			<TH class="col col-md-2">Precio</TH>
 			<TH class="col col-md-2">Total</TH>
-			<TH class="col col-md-1">---</TH>
+<!-- 			<TH class="col col-md-1">---</TH> -->
 
 		</TR>
 		<?php $total=0; ?>
@@ -81,7 +81,7 @@ extract( $_REQUEST );
 			<TD class="text-center"><?php echo $paquete['DESCRIPCION'] ?></TD> 
 			<TD class="text-center"><?php echo $paquete['CANTIDAD'] ?></TD> 
 			<TD class="text-center">$<?php echo $paquete['PRECIO'] ?></TD>
-			<TD class="text-center">
+			<!-- <TD class="text-center">
 				<FORM action="" method="post"> 
 					<INPUT type="hidden" name="cve_paq" value="<?php echo $paquete['cve_paq']; ?>">
 					<BUTTON class="btn btn-primary" name="btnAccion" value="Menos"	type="submit">
@@ -93,7 +93,7 @@ extract( $_REQUEST );
 						<I id="icono" class="fa fa-plus"></I>
 					</BUTTON>  
 				</FORM> 
-			</TD> 
+			</TD>  -->
 			<TD class="text-center">$<?php echo number_format($paquete['PRECIO']*$paquete['CANTIDAD'], 2); ?></TD>
 			<TD>
 				<FORM action="" method="post">

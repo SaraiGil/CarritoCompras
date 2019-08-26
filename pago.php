@@ -80,14 +80,15 @@ $mysqli = conectar();
 			<DIV class="jumbotron jumbotron-fluid">
 				<H2 class="display-4 text-center">Información del pedido</H2>
 				<HR class="my-4">
-				<p class="lead text-center"> Paquetes para: <?php echo $_SESSION['user'];?><BR /><BR />
 					<?php foreach ($_SESSION['CARRITO'] as $indice => $paquete) { 
-						echo "- ".$paquete['NOMBRE']."<BR />";
+						 echo "<p class=\"text-center\">- ".$paquete['NOMBRE']."<BR /></p>";
 					} ?>
+					<p class="text-center"><?php echo $_SESSION['user'];?>, estas a punto de pagar con Paypal la cantidad de:</p>
 					<H3 class="text-center">Total a pagar: <b>$<?= number_format($total,2); ?></b></H3>
 				</p>
 		<HR class="my-4">
 		<H3 class="display-4 text-center">Pago con Paypal</H3>
+    	
     	<!-- Set up a container element for the button -->
     	<div id="paypal-button-container"></div>
 
@@ -95,11 +96,76 @@ $mysqli = conectar();
 
 
 		
-	
+	<style>
+   
+    /* Media query for mobile viewport */
+    @media screen and (max-width: 400px) {
+        #paypal-button-container {
+           width: 100%;
+        }
+    }
+   
+    /* Media query for desktop viewport */
+    @media screen and (min-width: 400px) {
+        #paypal-button-container {
+           width: 250px;
+            display: inline-block;
+        }
+    }
+   
+</style>
+ 
+ 
+<script>
+    paypal.Button.render({
+        env: 'sandbox', // sandbox | production
+        style: {
+            label: 'checkout',  // checkout | credit | pay | buynow | generic
+            size:  'responsive', // small | medium | large | responsive
+            shape: 'pill',   // pill | rect
+            color: 'gold'   // gold | blue | silver | black
+        },
+ 
+        // PayPal Client IDs - replace with your own
+        // Create a PayPal app: https://developer.paypal.com/developer/applications/create
+ 
+        client: {
+            sandbox:    '',
+            production: ''
+        },
+ 
+        // Wait for the PayPal button to be clicked
+ 
+        payment: function(data, actions) {
+            return actions.payment.create({
+                payment: {
+                    transactions: [
+                        {
+                            amount: { total: '0.01', currency: 'MXN' },
+                            description:"Compra de productos a Maid Cleaning Service:$0.01",
+                            custom:"Codigo"
+                        }
+                    ]
+                }
+            });
+        },
+ 
+        // Wait for the payment to be authorized by the customer
+ 
+        onAuthorize: function(data, actions) {
+            return actions.payment.execute().then(function() {
+                console.log(data);
+                window.location="verificador.php?paymentToken="+data.paymentToken+"&paymentID="+data.paymentID;
+            });
+        }
+   
+    }, '#paypal-button-container');
+ 
+</script>
 
     
 
-    <script>
+    <!-- <script>
         // Render the PayPal button into #paypal-button-container
         paypal.Buttons({
 
@@ -124,7 +190,7 @@ $mysqli = conectar();
 
 
         }).render('#paypal-button-container');
-    </script>
+    </script> -->
     
 		
 
