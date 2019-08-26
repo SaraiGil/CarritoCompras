@@ -1,7 +1,7 @@
 <?php
 include 'carrito.php';
 include './inc/link.php';
-include_once 'nomanches_funciones.php';
+include_once 'c_funciones.php';
 $mysqli = conectar();
 extract( $_REQUEST );
 ?>

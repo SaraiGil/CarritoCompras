@@ -1,5 +1,5 @@
 <?php
-	include 'nomanches_funciones.php';
+	include 'c_funciones.php';
 	$mysqli = conectar();
 	
 	$sql = "CALL registra_venta('ven_06', 'Pendiente', 'c_ale', 550)";

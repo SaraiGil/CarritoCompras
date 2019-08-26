@@ -1,11 +1,11 @@
 <?php
-include( "nomanches_funciones.php" );
+include( "c_funciones.php" );
 $mysqli = conectar();
 
 extract( $_REQUEST );
 
 if ( !existe_sesion( $u, $s ) ) :
-	header( "location:nomanches_login.php?iderror=2" );
+	header( "location:c_login.php?iderror=2" );
 else :
 ?>
 
@@ -55,7 +55,6 @@ extract( $_REQUEST );
 
 
 <?php
-$mysqli =  new mysqli( "localhost", "root", 1234, "nomanches_bd" );
 
 $Stat_ven = "";
 $Fec_ven = "";

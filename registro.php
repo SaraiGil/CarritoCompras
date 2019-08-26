@@ -1,7 +1,7 @@
  <title>Registro</title>
     <?php include './inc/link.php'; 
-     include '../proyecto/nomanches_funciones.php'; 
-     include '../proyecto/carrito.php'; 
+     include 'c_funciones.php'; 
+     include 'carrito.php'; 
     $mysqli = conectar(); 
     extract( $_REQUEST );
     ?>
