@@ -81,19 +81,6 @@ extract( $_REQUEST );
 			<TD class="text-center"><?php echo $paquete['DESCRIPCION'] ?></TD> 
 			<TD class="text-center"><?php echo $paquete['CANTIDAD'] ?></TD> 
 			<TD class="text-center">$<?php echo $paquete['PRECIO'] ?></TD>
-			<TD class="text-center">
-				<FORM action="" method="post"> 
-					<INPUT type="hidden" name="cve_paq" value="<?php echo $paquete['cve_paq']; ?>">
-					<BUTTON class="btn btn-primary" name="btnAccion" value="Menos"	type="submit">
-						<I id="icono" class="fa fa-minus"></I>
-					</BUTTON>    
-						<?php echo $paquete['CANTIDAD'] ?> 
-					<INPUT type="hidden" name="cve_paq" value="<?php echo $paquete['cve_paq']; ?>">
-					<BUTTON class="btn btn-primary" name="btnAccion" value="Mas"	type="submit">
-						<I id="icono" class="fa fa-plus"></I>
-					</BUTTON>  
-				</FORM> 
-			</TD>
 			<TD class="text-center">$<?php echo number_format($paquete['PRECIO']*$paquete['CANTIDAD'], 2); ?></TD>
 			<TD>
 				<FORM action="" method="post">
@@ -122,7 +109,8 @@ extract( $_REQUEST );
 	</DIV>
 
 <?php } ?>
-		<?php if ( !isset($u) and !isset($s)) { ?>
+
+		<?php if ( isset($u) and isset($s)) { ?>
 
 		<?php if ( existe_sesion( $u, $s ) ) : ?>
 		
@@ -148,12 +136,9 @@ extract( $_REQUEST );
 				Volver al catálogo
 		</A> 
 		
-
 		
-
-		<?php if( !empty($_SESSION['CARRITO'] )) { ?>
-
-
+<!-- 
+		 <?php if( !empty($_SESSION['CARRITO'] )) { ?> -->
 
 		<BUTTON class="btn btn-lg btn-primary float-right helper pull-right " name="btnAccion" value="proceder" type="submit">
 				Proceder con el pago
@@ -164,7 +149,7 @@ extract( $_REQUEST );
 		<input class="form-control" name="confirmacion" type="radio" id="confirmacion" value='si' required/>Si
 		<input class="form-control" name="confirmacion" type="radio" id="confirmacion" value='no' required/>No
 
-		<?php } ?>
+<!-- 		<?php } ?> -->
 
 	   
 

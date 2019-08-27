@@ -88,7 +88,14 @@ extract( $_REQUEST );
 <?php if($msj!=""){?>
 <DIV class = "alert alert-success">
 <?php echo $msj;?>
-<a href="mostrar_carrito.php" class="badge badge-success">ver Carrito</a>
+
+<?php if ( isset($u) and isset($s)) { ?>
+<a href="mostrar_carrito.php?u=<?= $u ?>&s=<?= $s ?>" class="badge badge-success" title="Ver carrito de compras"> Ver Carrito</a>
+<?php }else{ ?>
+<a href="mostrar_carrito.php" class="badge badge-success" title="Ver carrito de compras"> Ver Carrito</a>
+<?php }?>
+
+<!-- <a href="mostrar_carrito.php?u=<?= $u ?>&s=<?= $s ?>" class="badge badge-success">ver Carrito</a> -->
 </DIV>
 <?php } ?>
 

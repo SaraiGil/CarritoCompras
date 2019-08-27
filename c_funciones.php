@@ -50,15 +50,18 @@ function existe_sesion( $us, $ses ) {
 	//print_r();
 	$rs = $mysqli->query( $sql );
 	//echo $rs;
-	$sihay=$rs->num_rows;
+	/*$sihay=$rs->num_rows;
 	//echo "Cantidad: ".$sihay;
 	if ( $sihay == 0 ) {
+		echo "<script>alert('NO HAY REGISTRO')</script>";
 		return false;
+
 	} else {
 		//$row = $rs->fetch_assoc();
+		echo "<script>alert('HAY REGISTRO')</script>";
 		return true;
-	}
-	//return $rs->num_rows == 1;
+	}*/
+	return $rs->num_rows == 1;
 }
 
 

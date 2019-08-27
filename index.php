@@ -3,6 +3,9 @@
           include_once( "c_funciones.php" );
           $mysqli = conectar();
     extract( $_REQUEST );
+    /*if ( !existe_sesion( $u, $s ) ) :
+    header( "location:c_login.php?iderror=2" );
+  else :*/
     ?>
 
 <!DOCTYPE html>
@@ -110,4 +113,4 @@ $rs = $mysqli->query( $sql );
 </body>
 </html>
 
-
+<?php //endif; ?>

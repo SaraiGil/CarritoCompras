@@ -1,4 +1,4 @@
-<?php
+k<?php
 	include( "c_funciones.php" );
 	include './inc/link.php';
 	$mysqli = conectar();

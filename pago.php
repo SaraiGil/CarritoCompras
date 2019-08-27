@@ -21,10 +21,12 @@ extract( $_REQUEST );
 	<SCRIPT src="js/jquery-3.4.1.min.js"></SCRIPT>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<script src="https://www.paypal.com/sdk/js?client-id=AV7o7x43bsKmSaxA4jmqSNpkbPjoMugPhdXGJeZsLl2AXLKS0Ns0N3YwGr5i6v0eWf6Ev43jeuexm3A5&currency=MXN"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=MXN"></script>
+	<!-- <script src="https://www.paypal.com/sdk/js?client-id=ATil7wrKu1m894I85d8M7euPud8zeeSHuhZIr6-eBeawz_Z83jhOi6iAm8vDBjDY4qggJTcvGev-7nAA&currency=MXN"></script> -->
 
 </HEAD>
 <BODY>
+
 <DIV class="barra">
        <?php include './inc/navbar.php'; ?>
    </DIV>
@@ -72,8 +74,27 @@ extract( $_REQUEST );
 ?>
 
 	<BR />
-	<!-- Include the PayPal JavaScript SDK -->
-    <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=MXN"></script>
+	
+<style>
+   
+    /* Media query for mobile viewport */
+    @media screen and (max-width: 400px) {
+        #paypal-button-container {
+           width: 100%;
+        }
+    }
+   
+    /* Media query for desktop viewport */
+    @media screen and (min-width: 400px) {
+        #paypal-button-container {
+           width: 450px;
+            display: inline-block;
+        }
+    }
+   
+</style> 
+
+
 
 
 	<DIV class="container">
@@ -90,110 +111,45 @@ extract( $_REQUEST );
 		<H3 class="display-4 text-center">Pago con Paypal</H3>
     	
     	<!-- Set up a container element for the button -->
-    	<div id="paypal-button-container"></div>
+    	<div id="paypal-button-container" class="text-center"></div>
 
 	</DIV>
 
 
-		
-	<style>
-   
-    /* Media query for mobile viewport */
-    @media screen and (max-width: 400px) {
-        #paypal-button-container {
-           width: 100%;
-        }
-    }
-   
-    /* Media query for desktop viewport */
-    @media screen and (min-width: 400px) {
-        #paypal-button-container {
-           width: 250px;
-            display: inline-block;
-        }
-    }
-   
-</style>
- 
- 
-<script>
-    paypal.Button.render({
-        env: 'sandbox', // sandbox | production
-        style: {
-            label: 'checkout',  // checkout | credit | pay | buynow | generic
-            size:  'responsive', // small | medium | large | responsive
-            shape: 'pill',   // pill | rect
-            color: 'gold'   // gold | blue | silver | black
+
+
+    <script>
+        // Render the PayPal button into #paypal-button-container
+
+        paypal.Buttons({
+        createOrder: ( data, actions ) => {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: '<?php echo $total;?>',
+                        currency_code: "MXN",
+                    },
+                    description: 'Compra de productos a Maid Cleaning Service: :<?php echo number_format($total,2); ?>',
+                    reference_id: "<?php echo $SID; ?>#<?php echo "ASDFGHJKLQWERTY" ?>"
+                }]
+            })
         },
- 
-        // PayPal Client IDs - replace with your own
-        // Create a PayPal app: https://developer.paypal.com/developer/applications/create
- 
-        client: {
-            sandbox:    '',
-            production: ''
-        },
- 
-        // Wait for the PayPal button to be clicked
- 
-        payment: function(data, actions) {
-            return actions.payment.create({
-                payment: {
-                    transactions: [
-                        {
-                            amount: { total: '0.01', currency: 'MXN' },
-                            description:"Compra de productos a Maid Cleaning Service:$0.01",
-                            custom:"Codigo"
-                        }
-                    ]
-                }
-            });
-        },
- 
-        // Wait for the payment to be authorized by the customer
- 
-        onAuthorize: function(data, actions) {
-            return actions.payment.execute().then(function() {
+        onApprove: ( data, actions ) => {
+            return actions.order.capture().then(function(details) {
+                alert('Pago realizado correctamente :)');
                 console.log(data);
-                window.location="verificador.php?paymentToken="+data.paymentToken+"&paymentID="+data.paymentID;
-            });
+                window.location="verifica.php?paymentToken="+data.orderID;
+            })
+        },
+        onError: ( error ) => {
+            console.log('error',error);
         }
-   
-    }, '#paypal-button-container');
+    }).render('#paypal-button-container')
  
 </script>
 
-    
-
-    <!-- <script>
-        // Render the PayPal button into #paypal-button-container
-        paypal.Buttons({
-
-            // Set up the transaction
-            createOrder: function(data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: '<?php echo $total;?>'
-                        }
-                    }]
-                });
-            },
-
-            // Finalize the transaction
-            onApprove: function(data, actions) {
-                return actions.order.capture().then(function(details) {
-                    // Show a success message to the buyer
-                    alert('Transaction completed by ' + details.payer.name.given_name + '!');
-                });
-            }
-
-
-        }).render('#paypal-button-container');
-    </script> -->
-    
 		
-
+	
 
 	</DIV>
 </BODY>
