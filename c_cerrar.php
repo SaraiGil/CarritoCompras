@@ -17,7 +17,7 @@ extract( $_REQUEST );
 			//unset($_SESSION['']);
 			session_unset();
 			session_destroy();
-			$cerrar = "DELETE FROM sesion WHERE usuario = '$u' AND sesion = '$s'";
+			$cerrar = "DELETE FROM sesiones WHERE nickus = '$u' AND ses = '$s'";
 			$mysqli->query( $cerrar );	
 			echo "<script>alert('Sesión cerrada con éxito :). USER: ".$_SESSION['user'].", SESION: ".$_SESSION['ses']."')</script>";
 			header( "location:c_login.php" );

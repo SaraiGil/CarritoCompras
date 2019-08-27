@@ -4,11 +4,11 @@ include 'transacciones.php';
 include './inc/link.php';
 //include 'c_funciones.php';
 $mysqli = conectar();
-//extract( $_REQUEST );
-/*
+extract( $_REQUEST );
+
 	if ( !existe_sesion( $u, $s ) ) :
 		header( "location:c_login.php?iderror=2" );
-	else :*/
+	else :
 
 
 ?>
@@ -205,4 +205,4 @@ desconectar();
 
 </HTML>
 
-<?php //endif; ?>
+<?php endif; ?>

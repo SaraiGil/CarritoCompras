@@ -3,9 +3,9 @@
 	include './inc/link.php';
 	$mysqli = conectar();
 	extract( $_REQUEST );
-	/*if ( !existe_sesion( $u, $s ) ) :
+	if ( !existe_sesion( $u, $s ) ) :
 		header( "location:c_login.php?iderror=2" );
-	else :*/
+	else :
 ?>
 
 <!DOCTYPE html>
@@ -194,4 +194,4 @@ desconectar();
 
 </HTML>
 
-<?php //endif; ?>
+<?php endif; ?>

@@ -43,32 +43,74 @@ INSERT INTO `ciudad` (`cve_ciu`, `nom_ciu`, `cve_est`) VALUES
 -- Volcando estructura para tabla maid_cleaning_service.compra
 CREATE TABLE IF NOT EXISTS `compra` (
   `cve_comp` int(5) NOT NULL AUTO_INCREMENT,
-  `fec_comp` date DEFAULT NULL,
-  `cve_prov` int(5) NOT NULL,
+  `claveTrans` char(250) NOT NULL DEFAULT '',
+  `paypalDatos` text NOT NULL DEFAULT '',
+  `fec_comp` datetime NOT NULL,
+  `cve_us` int(5) NOT NULL,
+  `total` decimal(60,2) NOT NULL DEFAULT 0.00,
+  `status` char(200) NOT NULL DEFAULT '0',
   PRIMARY KEY (`cve_comp`),
-  KEY `cve_prov` (`cve_prov`),
-  CONSTRAINT `compra_ibfk_1` FOREIGN KEY (`cve_prov`) REFERENCES `proveedor` (`cve_prov`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  KEY `cve_us` (`cve_us`),
+  CONSTRAINT `compra_ibfk_1` FOREIGN KEY (`cve_us`) REFERENCES `usuario` (`id_us`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla maid_cleaning_service.compra: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla maid_cleaning_service.compra: ~23 rows (aproximadamente)
 /*!40000 ALTER TABLE `compra` DISABLE KEYS */;
+INSERT INTO `compra` (`cve_comp`, `claveTrans`, `paypalDatos`, `fec_comp`, `cve_us`, `total`, `status`) VALUES
+	(1, '1234567890', '', '2019-10-01 08:19:54', 2, 750.00, 'pendiente'),
+	(2, 'uljckf2ri4ejfnk5ca15qafenc', '', '2019-08-21 02:05:20', 2, 630.50, 'pendiente'),
+	(3, 'uljckf2ri4ejfnk5ca15qafenc', '', '2019-08-21 02:09:21', 2, 180.50, 'pendiente'),
+	(4, 'uljckf2ri4ejfnk5ca15qafenc', '', '2019-08-21 02:11:12', 2, 630.50, 'pendiente'),
+	(5, 'uljckf2ri4ejfnk5ca15qafenc', '', '2019-08-21 02:39:17', 2, 630.50, 'pendiente'),
+	(6, 'uljckf2ri4ejfnk5ca15qafenc', '', '2019-08-21 02:39:40', 2, 630.50, 'pendiente'),
+	(7, 'uljckf2ri4ejfnk5ca15qafenc', '', '2019-08-21 03:02:15', 2, 630.50, 'pendiente'),
+	(8, 'uljckf2ri4ejfnk5ca15qafenc', '', '2019-08-21 03:02:59', 2, 630.50, 'pendiente'),
+	(9, 'uljckf2ri4ejfnk5ca15qafenc', '', '2019-08-21 03:03:35', 2, 630.50, 'pendiente'),
+	(10, 'uljckf2ri4ejfnk5ca15qafenc', '', '2019-08-21 03:03:50', 2, 630.50, 'pendiente'),
+	(11, 'uljckf2ri4ejfnk5ca15qafenc', '', '2019-08-21 03:04:56', 2, 630.50, 'pendiente'),
+	(12, 'uljckf2ri4ejfnk5ca15qafenc', '', '2019-08-21 03:05:30', 2, 630.50, 'pendiente'),
+	(13, 'uljckf2ri4ejfnk5ca15qafenc', '', '2019-08-21 03:05:49', 2, 630.50, 'pendiente'),
+	(14, 'uljckf2ri4ejfnk5ca15qafenc', '', '2019-08-21 03:08:06', 2, 630.50, 'pendiente'),
+	(15, 'cup07e4u8bsgnkao19bjdr01id', '', '2019-08-25 23:13:20', 2, 630.50, 'pendiente'),
+	(16, 'cup07e4u8bsgnkao19bjdr01id', '', '2019-08-25 23:19:08', 2, 450.00, 'pendiente'),
+	(17, 'cup07e4u8bsgnkao19bjdr01id', '', '2019-08-26 00:07:48', 3, 180.50, 'pendiente'),
+	(18, 'cup07e4u8bsgnkao19bjdr01id', '', '2019-08-26 00:08:06', 3, 180.50, 'pendiente'),
+	(19, 'cup07e4u8bsgnkao19bjdr01id', '', '2019-08-26 00:09:09', 3, 180.50, 'pendiente'),
+	(20, 'cup07e4u8bsgnkao19bjdr01id', '', '2019-08-26 00:09:22', 3, 180.50, 'pendiente'),
+	(21, 'cup07e4u8bsgnkao19bjdr01id', '', '2019-08-26 00:09:39', 3, 180.50, 'pendiente'),
+	(22, 'cup07e4u8bsgnkao19bjdr01id', '', '2019-08-26 00:10:26', 3, 180.50, 'pendiente'),
+	(23, 'cup07e4u8bsgnkao19bjdr01id', '', '2019-08-26 00:11:52', 3, 180.50, 'pendiente');
 /*!40000 ALTER TABLE `compra` ENABLE KEYS */;
 
 -- Volcando estructura para tabla maid_cleaning_service.detalle_compra
 CREATE TABLE IF NOT EXISTS `detalle_compra` (
   `cve_detcomp` int(5) NOT NULL AUTO_INCREMENT,
   `cve_comp` int(5) NOT NULL,
-  `no_inv` int(5) NOT NULL,
-  `cant_detc` int(4) DEFAULT NULL,
+  `cant_detc` int(4) NOT NULL,
+  `cve_paq` int(6) NOT NULL DEFAULT 0,
+  `precio` decimal(20,2) NOT NULL DEFAULT 0.00,
   PRIMARY KEY (`cve_detcomp`),
   KEY `cve_comp` (`cve_comp`),
-  KEY `no_inv` (`no_inv`),
+  KEY `cve_paq` (`cve_paq`),
   CONSTRAINT `detalle_compra_ibfk_1` FOREIGN KEY (`cve_comp`) REFERENCES `compra` (`cve_comp`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `detalle_compra_ibfk_2` FOREIGN KEY (`no_inv`) REFERENCES `inventario` (`no_inv`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  CONSTRAINT `detalle_compra_ibfk_2` FOREIGN KEY (`cve_paq`) REFERENCES `paquete` (`cve_paq`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla maid_cleaning_service.detalle_compra: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla maid_cleaning_service.detalle_compra: ~12 rows (aproximadamente)
 /*!40000 ALTER TABLE `detalle_compra` DISABLE KEYS */;
+INSERT INTO `detalle_compra` (`cve_detcomp`, `cve_comp`, `cant_detc`, `cve_paq`, `precio`) VALUES
+	(1, 14, 1, 1, 180.50),
+	(2, 14, 1, 2, 450.00),
+	(3, 15, 1, 1, 180.50),
+	(4, 15, 1, 2, 450.00),
+	(5, 16, 1, 2, 450.00),
+	(6, 17, 1, 1, 180.50),
+	(7, 18, 1, 1, 180.50),
+	(8, 19, 1, 1, 180.50),
+	(9, 20, 1, 1, 180.50),
+	(10, 21, 1, 1, 180.50),
+	(11, 22, 1, 1, 180.50),
+	(12, 23, 1, 1, 180.50);
 /*!40000 ALTER TABLE `detalle_compra` ENABLE KEYS */;
 
 -- Volcando estructura para tabla maid_cleaning_service.detalle_inventario
@@ -189,12 +231,13 @@ CREATE TABLE IF NOT EXISTS `paquete` (
   `desc_paq` char(90) DEFAULT NULL,
   `prec_paq` decimal(8,2) DEFAULT NULL,
   PRIMARY KEY (`cve_paq`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla maid_cleaning_service.paquete: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla maid_cleaning_service.paquete: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `paquete` DISABLE KEYS */;
 INSERT INTO `paquete` (`cve_paq`, `nom_paq`, `desc_paq`, `prec_paq`) VALUES
-	(1, 'PAQUETE Limpieza 1', 'Multiusos', 180.50);
+	(1, 'PAQUETE Limpieza 1', 'Multiusos', 180.50),
+	(2, 'Paquete 2 Baños', 'Limpieza para baños', 450.00);
 /*!40000 ALTER TABLE `paquete` ENABLE KEYS */;
 
 -- Volcando estructura para tabla maid_cleaning_service.producto
@@ -244,13 +287,12 @@ CREATE TABLE IF NOT EXISTS `servicio` (
   `id_clie` char(6) DEFAULT NULL,
   `cve_emp` char(6) DEFAULT NULL,
   `cve_paq` int(6) NOT NULL,
-  `stat_serv` char(15) DEFAULT NULL,
+  `stat_serv` char(15),
   `img_serv` char(25) DEFAULT NULL,
   PRIMARY KEY (`cve_serv`),
   KEY `id_clie` (`id_clie`),
   KEY `cve_emp` (`cve_emp`),
   KEY `cve_paq` (`cve_paq`),
-  CONSTRAINT `servicio_ibfk_1` FOREIGN KEY (`id_clie`) REFERENCES `cliente` (`id_clie`),
   CONSTRAINT `servicio_ibfk_2` FOREIGN KEY (`cve_emp`) REFERENCES `empleado` (`cve_emp`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -260,16 +302,19 @@ CREATE TABLE IF NOT EXISTS `servicio` (
 
 -- Volcando estructura para tabla maid_cleaning_service.sesiones
 CREATE TABLE IF NOT EXISTS `sesiones` (
-  `idSesión` int(3) NOT NULL AUTO_INCREMENT,
+  `idSesion` int(3) NOT NULL AUTO_INCREMENT,
   `user` int(6) NOT NULL,
-  `sesion` char(50) NOT NULL,
-  PRIMARY KEY (`idSesión`),
+  `ses` char(50) NOT NULL,
+  `nickus` char(9) NOT NULL,
+  PRIMARY KEY (`idSesion`),
   KEY `user` (`user`),
   CONSTRAINT `fkSesionUser` FOREIGN KEY (`user`) REFERENCES `usuario` (`id_us`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 -- Volcando datos para la tabla maid_cleaning_service.sesiones: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `sesiones` DISABLE KEYS */;
+INSERT INTO `sesiones` (`idSesion`, `user`, `ses`, `nickus`) VALUES
+	(1, 2, 'cup07e4u8bsgnkao19bjdr01id', 'prueba');
 /*!40000 ALTER TABLE `sesiones` ENABLE KEYS */;
 
 -- Volcando estructura para tabla maid_cleaning_service.sucursal
@@ -287,7 +332,7 @@ CREATE TABLE IF NOT EXISTS `sucursal` (
   CONSTRAINT `sucursal_ibfk_1` FOREIGN KEY (`cve_ciu`) REFERENCES `ciudad` (`cve_ciu`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla maid_cleaning_service.sucursal: ~6 rows (aproximadamente)
+-- Volcando datos para la tabla maid_cleaning_service.sucursal: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `sucursal` DISABLE KEYS */;
 INSERT INTO `sucursal` (`cve_suc`, `calle_suc`, `numc_suc`, `col_suc`, `cp_suc`, `cve_ciu`, `nom_suc`) VALUES
 	('1', 'calle1', '123', 'colonia2', 34234, 'q_06', 'Corregidora'),
@@ -302,7 +347,7 @@ CREATE TABLE IF NOT EXISTS `tipousuario` (
   PRIMARY KEY (`cve_tipous`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla maid_cleaning_service.tipousuario: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla maid_cleaning_service.tipousuario: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `tipousuario` DISABLE KEYS */;
 INSERT INTO `tipousuario` (`cve_tipous`, `nom_tipous`) VALUES
 	(1, 'Administrador'),
@@ -317,7 +362,7 @@ CREATE TABLE IF NOT EXISTS `tipo_producto` (
   PRIMARY KEY (`cve_tip`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla maid_cleaning_service.tipo_producto: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla maid_cleaning_service.tipo_producto: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `tipo_producto` DISABLE KEYS */;
 INSERT INTO `tipo_producto` (`cve_tip`, `desc_tip`) VALUES
 	(1, 'Limpiadores'),
@@ -348,13 +393,14 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   KEY `cve_tipous` (`cve_tipous`),
   CONSTRAINT `cliente_ibfk_3` FOREIGN KEY (`cve_ciu`) REFERENCES `ciudad` (`cve_ciu`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `cliente_ibfk_4` FOREIGN KEY (`cve_tipous`) REFERENCES `tipousuario` (`cve_tipous`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
--- Volcando datos para la tabla maid_cleaning_service.usuario: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla maid_cleaning_service.usuario: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
 INSERT INTO `usuario` (`id_us`, `nickuser`, `pass_us`, `nom_us`, `ap_us`, `am_us`, `calle_us`, `numc_us`, `col_us`, `cp_us`, `tel_us`, `rfc_us`, `email_us`, `cve_ciu`, `cve_tipous`) VALUES
 	(1, 'admin', '$2y$10$Wf0NAVlQBLABwLqHBQaQDe3G1Q4yE6jI8zWGtzVFktzuqOJ0WsZ5a', 'Administrador', 'de la', 'Pagina', 'Calle', 123, 'Colonia', 12345, '4421234567', 'ADMI123456SDF', 'admin@admin.com', 'q_14', 1),
-	(2, 'prueba', '$2y$10$GHGPT7.lTrXc8416umgy5.WcQjiXtm7WtgxNRjeEAu.TOAM9HhCvu', 'Alejandro', 'Vargas', 'Diaz', 'calle', 23, 'colonia', 76020, '4423456789', 'ALEX123456SDF', 'lexvargas@correo.com', 'q_14', 2);
+	(2, 'prueba', '$2y$10$GHGPT7.lTrXc8416umgy5.WcQjiXtm7WtgxNRjeEAu.TOAM9HhCvu', 'Alejandro', 'Vargas', 'Diaz', 'calle', 23, 'colonia', 76020, '4423456789', 'ALEX123456SDF', 'lexvargas@correo.com', 'q_14', 2),
+	(3, 'saraigil', '$2y$10$CoN.ljN5D8xMY0V5400HU.2lWeGbmWycfA3T4AeeQ8uzCcmvuYjbq', 'Sarai', 'Gil', 'Ramos', 'San Pedro', 34, 'Cerrito', 76110, '4423907890', 'GIRS961712HJK', 'sarai@prueba.com', 'q_14', 2);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

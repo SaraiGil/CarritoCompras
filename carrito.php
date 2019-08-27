@@ -105,7 +105,7 @@ if(isset($_POST['btnAccion'])) {
 
 		break;
 
-		case 'Mas':
+/*		case 'Mas':
 			$cve_paq  = $_POST['cve_paq'];
 
 			foreach ($_SESSION['CARRITO'] as $indice => $producto) {
@@ -126,7 +126,7 @@ if(isset($_POST['btnAccion'])) {
 					}
 				} 
 			}
-		break;
+		break;*/
 
 		case 'proceder':
 			$_SESSION['usr'] = $_POST['usr'];
