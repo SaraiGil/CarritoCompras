@@ -138,7 +138,7 @@ extract( $_REQUEST );
             return actions.order.capture().then(function(details) {
                 alert('Pago realizado correctamente :)');
                 console.log(data);
-                window.location="verifica.php?paymentToken="+data.orderID;
+                window.location="verifica.php?paymentToken="+data.orderID+"&paymentID="+data.paymentID;
             })
         },
         onError: ( error ) => {
